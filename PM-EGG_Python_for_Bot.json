@@ -1,0 +1,69 @@
+{
+  "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+  "meta": {
+    "version": "PTDL_v1",
+    "update_url": null
+  },
+  "exported_at": "2021-01-12T05:54:35-05:00",
+  "name": "Python",
+  "author": "pm.mail.kirill2546@gmail.com",
+  "description": "Усовершенствованное Python яйцо с интервалом перезагрузки.",
+  "features": null,
+  "images": [
+    "quay.io/yajtpg/pterodactyl-images:python-2.7",
+    "quay.io/yajtpg/pterodactyl-images:python-3.8",
+    "quay.io/yajtpg/pterodactyl-images:python-3.9",
+    "quay.io/yajtpg/pterodactyl-images:python-3.10",
+    "quay.io/yajtpg/pterodactyl-images:python-3.11"
+  ],
+  "startup": "echo PM-Core Усовершенствованное Python ядро! by PM-Kirill && /start.sh",
+  "config": {
+    "files": "{}",
+    "startup": "{\r
+    "done": "",\r
+    "userInteraction": []\r
+}",
+    "logs": "{\r
+    "custom": true,\r
+    "location": "logs/latest.log"\r
+}",
+    "stop": "^C",
+    "restart_interval": 0
+  },
+  "scripts": {
+    "installation": {
+      "script": null,
+      "container": "alpine:3",
+      "entrypoint": "ash"
+    }
+  },
+  "variables": [
+    {
+      "name": "Команда запуска 1",
+      "description": "Первая команда запуска",
+      "env_variable": "STARTUP_CMD",
+      "default_value": "pip install -r requirements.txt",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|string|max:256"
+    },
+    {
+      "name": "Команда запуска 2 (Опционально)",
+      "description": "Вторая команда запуска",
+      "env_variable": "SECOND_CMD",
+      "default_value": "python bot.py",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string|max:256"
+    },
+    {
+      "name": "Интервал рестартов",
+      "description": "Интервал в минутах для рестартов (минимальное значение: 1 минута, максимальное значение: 1440 минут)",
+      "env_variable": "RESTART_INTERVAL",
+      "default_value": "0",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "required|integer|gte:1|lte:1440"
+    }
+  ]
+}
